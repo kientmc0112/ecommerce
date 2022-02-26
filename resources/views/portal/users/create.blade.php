@@ -1,0 +1,124 @@
+@extends('portal.layouts.main')
+@section('content')
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Tạo mới</h1>
+        </div>
+    </div>
+    <div class="row">
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            {{ $errors->first() }}
+        </div>
+        @endif
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="display: flex; justify-content: center">
+                    <img id="avatar" src="{{ asset('images/default-avatar.jpg') }}"
+                        style="height: 200px; width: 200px; border-radius: 50%; object-fit: cover">
+                </div>
+                <div class="panel-body">
+                    <form role="form" name="user-form" class="form-transparent clearfix" method="POST"
+                        action="{{ route('users.store') }}" enctype="multipart/form-data">
+                        @csrf
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>Họ và tên <a style="color:red">*</a></label>
+                                    <input class="form-control" name="name" placeholder="Họ và tên ..." value="">
+                                </div>
+                                <div class="form-group">
+                                    <label>Email <a style="color:red">*</a></label>
+                                    <input class="form-control" name="email" placeholder="Email ..." value="">
+                                </div>
+                                <div class="form-group">
+                                    <label>Mật khẩu <a style="color:red">*</a></label>
+                                    <input type="password" class="form-control" name="password"
+                                        placeholder="Mật khẩu ..." value="">
+                                </div>
+                                <div class="form-group">
+                                    <label>Role <a style="color:red">*</a></label>
+                                    <select class="form-control" name="role" value="{{ old('role')}}">
+                                        <option value="{{ \App\Enums\DBConstant::MOD }}">MOD</option>
+                                        <option value="{{ \App\Enums\DBConstant::ADMIN }}">ADMIN</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <input style="display: none" id="input-avatar" type="file" name="avatar"
+                                    accept="image/*">
+                                <div class="form-group">
+                                    <label>Ngày sinh</label>
+                                    <input type="date" class="form-control" name="date_of_birth"
+                                        placeholder="Ngày sinh ..." value="">
+                                </div>
+                                <div class="form-group">
+                                    <label>Giới tính <a style="color:red">*</a></label>
+                                    <select class="form-control" name="sex">
+                                        <option value="{{ \App\Enums\DBConstant::MALE }}">Nam</option>
+                                        <option value="{{ \App\Enums\DBConstant::FEMALE }}">Nữ</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Số điện thoại</label>
+                                    <input class="form-control" name="phone" placeholder="Số điện thoại ..." value="">
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label>Thông tin khác</label>
+                                    <div class="tab-pane fade in active" id="info">
+                                        <textarea name="info" placeholder="Thông tin khác ....." class="form-control"
+                                            id="editor" rows="10"></textarea>
+                                    </div>
+                                </div>
+                                <div style="text-align: right">
+                                    <button type="submit" class="btn btn-default">Submit</button>
+                                    <button type="reset" class="btn btn-default">Reset</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+@section('js')
+<script src="//cdn.ckeditor.com/4.17.1/full/ckeditor.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#avatar").click(function() {
+            $("#input-avatar").click();
+        });
+        $("#input-avatar").on("change", function(e) {
+            var tmppath = URL.createObjectURL(e.target.files[0]);
+            $("#avatar").fadeIn("fast").attr('src', URL.createObjectURL(e.target.files[0]));
+        });
+        CKEDITOR.replace('editor', {
+            toolbarGroups: [
+                { name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
+                { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
+                { name: 'styles', groups: [ 'styles' ] },
+                { name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
+                { name: 'forms', groups: [ 'forms' ] },
+                { name: 'colors', groups: [ 'colors' ] },
+                { name: 'tools', groups: [ 'tools' ] },
+                '/',
+                { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+                { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
+                { name: 'links', groups: [ 'links' ] },
+                { name: 'insert', groups: [ 'insert' ] },
+                '/',
+                { name: 'others', groups: [ 'others' ] },
+                { name: 'about', groups: [ 'about' ] }
+            ],
+            removeButtons: 'Source,Save,Templates,NewPage,ExportPdf,Preview,Print,Find,Replace,SelectAll,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,CopyFormatting,CreateDiv,PageBreak,Iframe,ShowBlocks,About,Smiley,Anchor',
+            editorplaceholder: 'Type your content...',
+            height: '300'
+        });
+    })
+</script>
+@endsection
