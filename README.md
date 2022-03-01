@@ -10,6 +10,10 @@ composer install
 
 php artisan key:generate
 
+php artisan ckfinder:download
+
+php artisan vendor:publish --tag=ckfinder-assets
+
 npm install
 
 npm run dev

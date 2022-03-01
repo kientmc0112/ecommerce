@@ -71,8 +71,11 @@
     <!-- Custom Theme JavaScript -->
     <script src="{{ asset('portal/dist/js/sb-admin-2.js') }}"></script>
 
+    <!-- CKeditor -->
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+
     @yield('js')
-    
+
     <script>
         $(document).ready(function() {
             $(document).on("click", "#logout", function() {

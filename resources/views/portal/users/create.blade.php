@@ -87,7 +87,6 @@
 </div>
 @endsection
 @section('js')
-<script src="//cdn.ckeditor.com/4.17.1/full/ckeditor.js"></script>
 <script>
     $(document).ready(function() {
         $("#avatar").click(function() {
@@ -98,6 +97,8 @@
             $("#avatar").fadeIn("fast").attr('src', URL.createObjectURL(e.target.files[0]));
         });
         CKEDITOR.replace('editor', {
+            filebrowserBrowseUrl: '{{ route('ckfinder_browser') }}',
+            filebrowserImageUploadUrl: '{{ route('ckfinder_browser') . '?_token=' . csrf_token() }}',
             toolbarGroups: [
                 { name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
                 { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
