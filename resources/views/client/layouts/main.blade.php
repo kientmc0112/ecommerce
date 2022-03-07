@@ -1,79 +1,49 @@
-<!DOCTYPE html>
-<!--[if IE 7]><html class="ie ie7"><![endif]-->
-<!--[if IE 8]><html class="ie ie8"><![endif]-->
-<!--[if IE 9]><html class="ie ie9"><![endif]-->
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    {{-- <link href="apple-touch-icon.png" rel="apple-touch-icon"> --}}
-    {{-- <link href="favicon.png" rel="icon"> --}}
-    <meta name="author" content="Nghia Minh Luong">
-    <meta name="keywords" content="Default Description">
-    <meta name="description" content="Default keyword">
-    <title>Sky - Homepage</title>
-    <!-- Fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Archivo+Narrow:300,400,700%7CMontserrat:300,400,500,600,700,800,900" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('client/plugins/font-awesome/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('client/plugins/ps-icon/style.css') }}">
-    <!-- CSS Library-->
-    <link rel="stylesheet" href="{{ asset('client/plugins/bootstrap/dist/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('client/plugins/owl-carousel/assets/owl.carousel.css') }}">
-    <link rel="stylesheet" href="{{ asset('client/plugins/jquery-bar-rating/dist/themes/fontawesome-stars.css') }}">
-    <link rel="stylesheet" href="{{ asset('client/plugins/slick/slick/slick.css') }}">
-    <link rel="stylesheet" href="{{ asset('client/plugins/bootstrap-select/dist/css/bootstrap-select.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('client/plugins/Magnific-Popup/dist/magnific-popup.css') }}">
-    <link rel="stylesheet" href="{{ asset('client/plugins/jquery-ui/jquery-ui.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('client/plugins/revolution/css/settings.css') }}">
-    <link rel="stylesheet" href="{{ asset('client/plugins/revolution/css/layers.css') }}">
-    <link rel="stylesheet" href="{{ asset('client/plugins/revolution/css/navigation.css') }}">
-    <!-- Custom-->
-    <link rel="stylesheet" href="{{ asset('client/css/style.css') }}">
-    <!--HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries-->
-    <!--WARNING: Respond.js doesn't work if you view the page via file://-->
-    <!--[if lt IE 9]><script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script><script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script><![endif]-->
-  </head>
-  <!--[if IE 7]><body class="ie7 lt-ie8 lt-ie9 lt-ie10"><![endif]-->
-  <!--[if IE 8]><body class="ie8 lt-ie9 lt-ie10"><![endif]-->
-  <!--[if IE 9]><body class="ie9 lt-ie10"><![endif]-->
-  <body class="ps-loading">
+<!doctype html>
+<html class="no-js" lang="en">
 
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Electronics - eCommerce HTML5 Template</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('client/assets/img/favicon.png') }}">
+    <link rel="stylesheet" href="{{ asset('client/assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('client/assets/css/magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ asset('client/assets/css/animate.css') }}">
+    <link rel="stylesheet" href="{{ asset('client/assets/css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('client/assets/css/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('client/assets/css/pe-icon-7-stroke.css') }}">
+    <link rel="stylesheet" href="{{ asset('client/assets/css/icofont.css') }}">
+    <link rel="stylesheet" href="{{ asset('client/assets/css/meanmenu.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('client/assets/css/bundle.css') }}">
+    <link rel="stylesheet" href="{{ asset('client/assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('client/assets/css/responsive.css') }}">
+    <script src="{{ asset('client/assets/js/vendor/modernizr-2.8.3.min.js') }}"></script>
+</head>
+
+<body>
+    <!--[if lt IE 8]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
     @include('client.layouts.header')
 
-    <main class="ps-main">
-      @include('client.layouts.banner')
+    @yield('content')
 
-      @yield('content')
-      
-      @include('client.layouts.footer')
-    </main>
-    <!-- JS Library-->
-    <script type="text/javascript" src="{{ asset('client/plugins/jquery/dist/jquery.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('client/plugins/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('client/plugins/jquery-bar-rating/dist/jquery.barrating.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('client/plugins/owl-carousel/owl.carousel.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('client/plugins/gmap3.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('client/plugins/imagesloaded.pkgd.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('client/plugins/isotope.pkgd.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('client/plugins/bootstrap-select/dist/js/bootstrap-select.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('client/plugins/jquery.matchHeight-min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('client/plugins/slick/slick/slick.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('client/plugins/elevatezoom/jquery.elevatezoom.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('client/plugins/Magnific-Popup/dist/jquery.magnific-popup.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('client/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAx39JFH5nhxze1ZydH-Kl8xXM3OK4fvcg&amp;region=GB"></script>
-    <script type="text/javascript" src="{{ asset('client/plugins/revolution/js/jquery.themepunch.tools.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('client/plugins/revolution/js/jquery.themepunch.revolution.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('client/plugins/revolution/js/extensions/revolution.extension.video.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('client/plugins/revolution/js/extensions/revolution.extension.slideanims.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('client/plugins/revolution/js/extensions/revolution.extension.layeranimation.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('client/plugins/revolution/js/extensions/revolution.extension.navigation.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('client/plugins/revolution/js/extensions/revolution.extension.parallax.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('client/plugins/revolution/js/extensions/revolution.extension.actions.min.js') }}"></script>
-    <!-- Custom scripts-->
-    <script type="text/javascript" src="{{ asset('client/js/main.js') }}"></script>
-  </body>
+    @include('client.layouts.footer')
+
+    <script src="{{ asset('client/assets/js/vendor/jquery-1.12.0.min.js') }}"></script>
+    <script src="{{ asset('client/assets/js/popper.js') }}"></script>
+    <script src="{{ asset('client/assets/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('client/assets/js/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ asset('client/assets/js/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ asset('client/assets/js/imagesloaded.pkgd.min.js') }}"></script>
+    <script src="{{ asset('client/assets/js/jquery.counterup.min.js') }}"></script>
+    <script src="{{ asset('client/assets/js/waypoints.min.js') }}"></script>
+    <script src="{{ asset('client/assets/js/ajax-mail.js') }}"></script>
+    <script src="{{ asset('client/assets/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('client/assets/js/plugins.js') }}"></script>
+    <script src="{{ asset('client/assets/js/main.js') }}"></script>
+</body>
+
 </html>

@@ -1,142 +1,94 @@
 @extends('client.layouts.main')
 @section('content')
-<div class="ps-section--features-product ps-section masonry-root pt-100 pb-100">
-  <div class="ps-container">
-    <div class="ps-section__header mb-50">
-      <h3 class="ps-section__title" data-mask="features">- Features Products</h3>
-      {{-- <ul class="ps-masonry__filter">
-        <li class="current"><a href="#" data-filter="*">All <sup>8</sup></a></li>
-        <li><a href="#" data-filter=".nike">Nike <sup>1</sup></a></li>
-        <li><a href="#" data-filter=".adidas">Adidas <sup>1</sup></a></li>
-        <li><a href="#" data-filter=".men">Men <sup>1</sup></a></li>
-        <li><a href="#" data-filter=".women">Women <sup>1</sup></a></li>
-        <li><a href="#" data-filter=".kids">Kids <sup>4</sup></a></li>
-      </ul> --}}
-    </div>
-    <div class="ps-section__content pb-50">
-      <div class="masonry-wrapper" data-col-md="4" data-col-sm="2" data-col-xs="1" data-gap="30" data-radio="100%">
-        <div class="ps-masonry">
-          <div class="grid-sizer"></div>
-          @for ($i = 0; $i < 8; $i++)
-            <div class="grid-item kids">
-              <div class="grid-item__content-wrapper">
-                <div class="ps-shoe mb-30">
-                  <div class="ps-shoe__thumbnail">
-                    <div class="ps-badge"><span>New</span></div>
-                    <div class="ps-badge ps-badge--sale ps-badge--2nd"><span>-35%</span></div>
-                    {{-- <a class="ps-shoe__favorite" href="#"><i class="ps-icon-heart"></i></a> --}}
-                    <img src="{{ asset('client/images/shoe/1.jpg') }}" alt=""><a class="ps-shoe__overlay" href="product-detail.html"></a>
-                  </div>
-                  <div class="ps-shoe__content">
-                    {{-- <div class="ps-shoe__variants">
-                      <div class="ps-shoe__variant normal"><img src="images/shoe/2.jpg" alt=""><img src="images/shoe/3.jpg" alt=""><img src="images/shoe/4.jpg" alt=""><img src="images/shoe/5.jpg" alt=""></div>
-                      <select class="ps-rating ps-shoe__rating">
-                        <option value="1">1</option>
-                        <option value="1">2</option>
-                        <option value="1">3</option>
-                        <option value="1">4</option>
-                        <option value="2">5</option>
-                      </select>
-                    </div> --}}
-                    <div class="ps-shoe__detail"><a class="ps-shoe__name" href="#">Air Jordan 7 Retro</a>
-                      <p class="ps-shoe__categories"><a href="#">Men shoes</a>,<a href="#"> Nike</a>,<a href="#"> Jordan</a></p><span class="ps-shoe__price">
-                        <del>£220</del> £ 120</span>
+    @include('client.layouts.slider')
+
+    @include('client.layouts.bannerTop')
+
+    <div class="electro-product-wrapper wrapper-padding pt-85 pb-75 gray-bg-7">
+        <div class="container">
+            <div class="section-title-4 text-center mb-45">
+                <h2>Sản phẩm mới</h2>
+            </div>
+            <div class="custom-row-2">
+                @foreach ($newProducts as $newProduct)
+                    <div class="custom-col-style-2 custom-col-4">
+                        <div class="product-wrapper product-border mb-24 border">
+                            <div class="product-img-3 product-img-hanicraft mb-0">
+                                <a href="{{ route('products.show', $newProduct->slug) }}">
+                                    <img src="{{ asset($newProduct->image) }}" alt="" style="width: 100%; height: 300px; object-fit: cover">
+                                </a>
+                                @if (isset($newProduct->discount) && $newProduct->discount > 0)
+                                    <span class="new bg-danger">sell</span>
+                                @endif
+                                {{-- <div class="product-action-right">
+                                    <a class="animate-right" href="#" data-target="#exampleModal" data-toggle="modal" title="Quick View">
+                                        <i class="pe-7s-look"></i>
+                                    </a>
+                                    <a class="animate-top" title="Add To Cart" href="#">
+                                        <i class="pe-7s-cart"></i>
+                                    </a>
+                                    <a class="animate-left" title="Wishlist" href="#">
+                                        <i class="pe-7s-like"></i>
+                                    </a>
+                                </div> --}}
+                            </div>
+                            <div class="product-content-4 text-center">
+                                <h4 style="height: 50px"><a href="{{ route('products.show', $newProduct->slug) }}">{{ $newProduct->name }}</a></h4>
+                                {{-- <span style="height: 20px; overflow: hidden">{{ $newProduct->category->name }}</span> --}}
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <h5 class="mr-2">{{ number_format($newProduct->sale_price, 0, ',', '.') ?? number_format($newProduct->price, 0, ',', '.') }}đ</h5>
+                                    @if (isset($newProduct->discount) && $newProduct->discount > 0)
+                                        <span style="text-decoration: line-through">{{ number_format($newProduct->price, 0, ',', '.') }}đ</span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+
+    @include('client.layouts.bannerBot')
+
+    <div class="best-selling-area pb-95 gray-bg-7">
+        <div class="section-title-4 text-center mb-60">
+            <h2>Giảm giá</h2>
+        </div>
+        <div class="best-selling-product">
+            <div class="product-area-2 wrapper-padding pb-7 gray-bg-7">
+                <div class="container-fluid">
+                    <div class="row">
+                        @foreach ($saleProducts as $saleProduct)
+                            <div class="col-lg-6 col-xl-4">
+                                <div class="product-wrapper product-wrapper-border mb-30">
+                                    <div class="product-img-5">
+                                        <a href="{{ route('products.show', $saleProduct->slug) }}">
+                                            <img src="{{ asset($saleProduct->image) }}" alt="" style="height: 150px; width: 100%; object-fit: cover">
+                                        </a>
+                                    </div>
+                                    <div class="product-content-7 d-flex flex-column justify-content-center">
+                                        <h4 style="height: 50px"><a href="{{ route('products.show', $saleProduct->slug) }}">{{ $saleProduct->name }}</a></h4>
+                                        <span style="text-decoration: line-through">{{ number_format($newProduct->price, 0, ',', '.') }}đ</span>
+                                        <h5>{{ number_format($newProduct->sale_price, 0, ',', '.') }}đ</h5>
+                                        {{-- <div class="product-action-electro">
+                                            <a class="animate-top" title="Add To Cart" href="#">
+                                                <i class="pe-7s-cart"></i>
+                                            </a>
+                                            <a class="animate-left" title="Wishlist" href="#">
+                                                <i class="pe-7s-like"></i>
+                                            </a>
+                                            <a class="animate-right" title="Compare" data-toggle="modal" data-target="#exampleCompare" href="#">
+                                                <i class="pe-7s-repeat"></i>
+                                            </a>
+                                        </div> --}}
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
-              </div>
             </div>
-          @endfor
         </div>
-      </div>
     </div>
-  </div>
-</div>
-<div class="ps-section--offer">
-  <div class="ps-column"><a class="ps-offer" href="product-listing.html"><img src="{{ asset('client/images/banner/home-banner-1.png') }}" alt=""></a></div>
-  <div class="ps-column"><a class="ps-offer" href="product-listing.html"><img src="{{ asset('client/images/banner/home-banner-2.png') }}" alt=""></a></div>
-</div>
-{{-- <div class="ps-section--sale-off ps-section pt-80 pb-40">
-  <div class="ps-container">
-    <div class="ps-section__header mb-50">
-      <h3 class="ps-section__title" data-mask="Sale off">- Hot Deal Today</h3>
-    </div>
-    <div class="ps-section__content">
-      <div class="row">
-            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 ">
-              <div class="ps-hot-deal">
-                <h3>Nike DUNK Max 95 OG</h3>
-                <p class="ps-hot-deal__price">Only:  <span>£155</span></p>
-                <ul class="ps-countdown" data-time="December 13, 2017 15:37:25">
-                  <li><span class="hours"></span><p>Hours</p></li>
-                  <li class="divider">:</li>
-                  <li><span class="minutes"></span><p>minutes</p></li>
-                  <li class="divider">:</li>
-                  <li><span class="seconds"></span><p>Seconds</p></li>
-                </ul><a class="ps-btn" href="#">Order Today<i class="ps-icon-next"></i></a>
-              </div>
-            </div>
-            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 ">
-              <div class="ps-hotspot"><a class="point first active" href="javascript:;"><i class="fa fa-plus"></i>
-                  <div class="ps-hotspot__content">
-                    <p class="heading">JUMP TO HEADER</p>
-                    <p>Dynamic Fit Collar en la zona del tobillo que une la parte inferior de la pierna y el pie sin reducir la libertad de movimiento.</p>
-                  </div></a><a class="point second" href="javascript:;"><i class="fa fa-plus"></i>
-                  <div class="ps-hotspot__content">
-                    <p class="heading">JUMP TO HEADER</p>
-                    <p>Dynamic Fit Collar en la zona del tobillo que une la parte inferior de la pierna y el pie sin reducir la libertad de movimiento.</p>
-                  </div></a><a class="point third" href="javascript:;"><i class="fa fa-plus"></i>
-                  <div class="ps-hotspot__content">
-                    <p class="heading">JUMP TO HEADER</p>
-                    <p>Dynamic Fit Collar en la zona del tobillo que une la parte inferior de la pierna y el pie sin reducir la libertad de movimiento.</p>
-                  </div></a><img src="{{ asset('client/images/hot-deal.png') }}" alt=""></div>
-            </div>
-      </div>
-    </div>
-  </div>
-</div> --}}
-<div class="ps-section ps-section--top-sales ps-owl-root pt-80 pb-80">
-  <div class="ps-container">
-    <div class="ps-section__header mb-50">
-      <div class="row">
-            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 ">
-              <h3 class="ps-section__title" data-mask="BEST SALE">- Top Sales</h3>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 ">
-              <div class="ps-owl-actions"><a class="ps-prev" href="#"><i class="ps-icon-arrow-right"></i>Prev</a><a class="ps-next" href="#">Next<i class="ps-icon-arrow-left"></i></a></div>
-            </div>
-      </div>
-    </div>
-    <div class="ps-section__content">
-      <div class="ps-owl--colection owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="false" data-owl-dots="false" data-owl-item="4" data-owl-item-xs="1" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="4" data-owl-duration="1000" data-owl-mousedrag="on">
-        @for ($i = 0; $i < 6; $i++)
-        <div class="ps-shoes--carousel">
-          <div class="ps-shoe">
-            <div class="ps-shoe__thumbnail">
-              <div class="ps-badge"><span>New</span></div>
-              <div class="ps-badge ps-badge--sale ps-badge--2nd"><span>-35%</span></div><a class="ps-shoe__favorite" href="#"><i class="ps-icon-heart"></i></a><img src="{{ asset('client/images/shoe/2.jpg') }}" alt=""><a class="ps-shoe__overlay" href="product-detail.html"></a>
-            </div>
-            <div class="ps-shoe__content">
-              {{-- <div class="ps-shoe__variants">
-                <div class="ps-shoe__variant normal"><img src="images/shoe/2.jpg" alt=""><img src="images/shoe/3.jpg" alt=""><img src="images/shoe/4.jpg" alt=""><img src="images/shoe/5.jpg" alt=""></div>
-                <select class="ps-rating ps-shoe__rating">
-                  <option value="1">1</option>
-                  <option value="1">2</option>
-                  <option value="1">3</option>
-                  <option value="1">4</option>
-                  <option value="2">5</option>
-                </select>
-              </div> --}}
-              <div class="ps-shoe__detail"><a class="ps-shoe__name" href="product-detai.html">Air Jordan 7 Retro</a>
-                <p class="ps-shoe__categories"><a href="#">Men shoes</a>,<a href="#"> Nike</a>,<a href="#"> Jordan</a></p><span class="ps-shoe__price">
-                  <del>£220</del> £ 120</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        @endfor
-      </div>
-    </div>
-  </div>
-</div>
 @endsection

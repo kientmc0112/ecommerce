@@ -54,6 +54,17 @@
                     </ul>
                 </li>
                 <li>
+                    <a href="#"><i class="fa fa-cubes fa-fw"></i> Sản phẩm<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="{{ route('products.create') }}">Tạo mới</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('products.index') }}">Danh sách</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
                     <a href="#"><i class="fa fa-user fa-fw"></i> Quản trị viên<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>

@@ -22,15 +22,18 @@ Route::group(['prefix' => 'admin'], function () {
         Route::middleware(['auth'])->group(function() {
             Route::get('/', 'HomeController@index')->name('dashboard');
             Route::resource('users', 'UserController');
-            Route::resource('categories', 'CategoryController');
+            Route::resource('categories', 'CategoryController')->except('show');
+            Route::resource('products', 'ProductController')->except('show');
         });
     });
 });
 
 
 Route::namespace('Client')->group(function () {
-    Route::get('/', function() {
-        return view("client.index");
-    });
+    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/contact', 'HomeController@show')->name('home.contact');
+    Route::get('/{slug}', 'ProductController@show')->name('products.show');
+    // Route::get('/search', 'ProductController@search')->name('products.search');
+    Route::get('/categories/{id}', 'CategoryController@show')->name('categories.show');
 });
 
