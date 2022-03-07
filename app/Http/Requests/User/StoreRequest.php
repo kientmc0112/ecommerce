@@ -31,7 +31,7 @@ class StoreRequest extends FormRequest
             'role' => 'required',
             'sex' => 'required',
             'phone' => 'numeric|nullable',
-            'avatar' => 'image|nullable'
+            'avatar' => 'image|mimes:jpeg,png,jpg|nullable'
         ];
     }
 

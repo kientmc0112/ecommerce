@@ -1,0 +1,104 @@
+<?php
+
+namespace App\Http\Controllers\Portal;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\Product;
+use App\Models\Category;
+use App\Http\Requests\Product\StoreRequest;
+use App\Http\Requests\Product\UpdateRequest;
+use DB;
+use Exception;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\File;
+
+class ProductController extends Controller
+{
+    public function index() {
+        $products = Product::orderBy('updated_at', 'DESC')->get();
+
+        return view('portal.products.index', compact('products'));
+    }
+
+    public function create()
+    {
+        $categories = Category::all();
+
+        return view('portal.products.create', compact('categories'));
+    }
+
+    public function store(StoreRequest $request) 
+    {
+        DB::beginTransaction();
+        try {
+            $data = $request->all();
+            $product = Product::create($data);
+            if ($request->hasFile('image')) {
+                $image = $request->file('image');
+                $name = 'product_' . $product->id . '_' . Carbon::now()->format('Y_m_d_his') . '.' . $image->getClientOriginalExtension();
+                $path = config('filesystems.file_upload_path.product_path');
+                $image->move($path, $name, 'public');
+                $product->update(['image' => $path . $name]);
+            }
+            DB::commit();
+
+            return redirect()->route('products.index');
+        } catch (Exception $e) {
+            DB::rollBack();
+
+            return redirect()->route('products.index');
+        }
+    }
+
+    public function edit($id)
+    {
+        $categories = Category::all();
+        $product = Product::find($id);
+
+        return view('portal.products.edit', compact('categories', 'product'));
+    }
+
+    public function update(UpdateRequest $request, $id)
+    {
+        DB::beginTransaction();
+        try {
+            $product = Product::findOrFail($id);
+            $data = $request->all();
+            if ($request->hasFile('image')) {
+                if (File::exists($product->image)) {
+                    File::delete($product->image);
+                }
+                $image = $request->file('image');
+                $name = 'product_' . $product->id . '_' . Carbon::now()->format('Y_m_d_his') . '.' . $image->getClientOriginalExtension();
+                $path = config('filesystems.file_upload_path.user_path');
+                $image->move($path, $name, 'public');
+                $data['image'] = $path . $name;
+            }
+            $product->update($data);
+            DB::commit();
+
+            return redirect()->route('products.index');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            return redirect()->back();
+        }
+    }
+
+    public function destroy($id)
+    {
+        DB::beginTransaction();
+        try {
+            $product = Product::findOrFail($id);
+            $product->delete();
+            DB::commit();
+
+            return redirect()->route('products.index');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            return redirect()->back();
+        }
+    }
+}
