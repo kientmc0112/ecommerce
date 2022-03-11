@@ -30,6 +30,8 @@
     <!-- Custom Fonts -->
     <link href="{{ asset('portal/bower_components/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
 
+    @yield('css')
+
     <!-- jQuery -->
     <script src="{{ asset('portal/bower_components/jquery/dist/jquery.min.js') }}"></script>
 
