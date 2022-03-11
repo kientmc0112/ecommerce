@@ -82,8 +82,8 @@
     </div>
 </div>
 @endsection
+
 @section('js')
-<script src="//cdn.ckeditor.com/4.17.1/full/ckeditor.js"></script>
 <script>
     $(document).ready(function() {
         $("#avatar").click(function() {

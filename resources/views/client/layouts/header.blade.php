@@ -191,7 +191,7 @@
             <nav>
                 <ul>
                     <li><a href="{{ route('home') }}">Trang chủ</a></li>
-                    <li><a href="{{ route('home.contact') }}">Liên hệ</a></li>
+                    <li><a href="{{ route('contact') }}">Liên hệ</a></li>
                 </ul>
             </nav>
         </div>

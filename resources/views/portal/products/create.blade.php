@@ -78,6 +78,9 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('css')
 <style>
     .drop-region {
         width: 400px;
@@ -89,6 +92,7 @@
     }
 </style>
 @endsection
+
 @section('js')
 <script>
     $(document).ready(function() {

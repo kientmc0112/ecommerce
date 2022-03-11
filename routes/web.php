@@ -21,9 +21,15 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::middleware(['auth'])->group(function() {
             Route::get('/', 'HomeController@index')->name('dashboard');
+            Route::get('/images/list', 'ImageController@list')->name('images.list');
+            Route::post('/images/upload', 'ImageController@upload')->name('images.upload');
+            Route::delete('/images/remove', 'ImageController@remove')->name('images.remove');
+            Route::resource('images', 'ImageController')->only(['update', 'show']);
+
             Route::resource('users', 'UserController');
             Route::resource('categories', 'CategoryController')->except('show');
             Route::resource('products', 'ProductController')->except('show');
+            Route::resource('contacts', 'ContactController')->only(['index', 'edit', 'update', 'destroy']);
         });
     });
 });
@@ -31,9 +37,9 @@ Route::group(['prefix' => 'admin'], function () {
 
 Route::namespace('Client')->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
-    Route::get('/contact', 'HomeController@show')->name('home.contact');
+    Route::get('/contact', 'ContactController@create')->name('contact');
+    Route::post('/contact', 'ContactController@store')->name('contacts.store');
     Route::get('/{slug}', 'ProductController@show')->name('products.show');
-    // Route::get('/search', 'ProductController@search')->name('products.search');
     Route::get('/categories/{id}', 'CategoryController@show')->name('categories.show');
 });
 
