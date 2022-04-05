@@ -15,7 +15,7 @@
                         <div class="product-wrapper product-border mb-24 border">
                             <div class="product-img-3 product-img-hanicraft mb-0">
                                 <a href="{{ route('products.show', $newProduct->slug) }}">
-                                    <img src="{{ asset($newProduct->image) }}" alt="" style="width: 100%; height: 300px; object-fit: cover">
+                                    <img src="{{ asset($newProduct->image) }}" alt="" style="width: 100%">
                                 </a>
                                 @if (isset($newProduct->discount) && $newProduct->discount > 0)
                                     <span class="new bg-danger">sell</span>
@@ -64,7 +64,7 @@
                                 <div class="product-wrapper product-wrapper-border mb-30">
                                     <div class="product-img-5">
                                         <a href="{{ route('products.show', $saleProduct->slug) }}">
-                                            <img src="{{ asset($saleProduct->image) }}" alt="" style="height: 150px; width: 100%; object-fit: cover">
+                                            <img src="{{ asset($saleProduct->image) }}" alt="" style="width: 100%">
                                         </a>
                                     </div>
                                     <div class="product-content-7 d-flex flex-column justify-content-center">

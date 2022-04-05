@@ -189,7 +189,7 @@
                                             <div class="product-wrapper product-box-style mb-30">
                                                 <div class="product-img">
                                                     <a href="{{ route('products.show', $product->id) }}">
-                                                        <img src="{{ asset($product->image) }}" alt="" style="height: 350px; width: 100%; object-fit: cover">
+                                                        <img src="{{ asset($product->image) }}" alt="" style="width: 100%">
                                                     </a>
                                                     @if (isset($product->discount) && $product->discount > 0)
                                                         <span class="bg-danger">sell</span>
@@ -228,7 +228,7 @@
                                                 class="product-wrapper mb-30 single-product-list product-list-right-pr mb-60">
                                                 <div class="product-img list-img-width">
                                                     <a href="{{ route('products.show', $product->id) }}">
-                                                        <img src="{{ asset($product->image) }}" alt="" style="height: 350px; width: 100%; object-fit: cover">
+                                                        <img src="{{ asset($product->image) }}" alt="" style="width: 100%">
                                                     </a>
                                                     @if (isset($product->discount) && $product->discount > 0)
                                                         <span class="bg-danger">sell</span>

@@ -34,11 +34,15 @@ class ProductController extends Controller
         try {
             $data = $request->all();
             $product = Product::create($data);
-            if ($request->hasFile('image')) {
-                $image = $request->file('image');
-                $name = 'product_' . $product->id . '_' . Carbon::now()->format('Y_m_d_his') . '.' . $image->getClientOriginalExtension();
+            if ($request->has('file_content')) {
+                $extension = explode('/', mime_content_type($request->file_content))[1];
+                $fileContent = $request->file_content;
+                list($baseType, $fileContent) = explode(';', $fileContent);
+                list(, $fileContent) = explode(',', $fileContent);
+                $fileContent = base64_decode($fileContent);
+                $name = 'product_' . $product->id . '_' . Carbon::now()->format('Y_m_d_his') . '.' . $extension;
                 $path = config('filesystems.file_upload_path.product_path');
-                $image->move($path, $name, 'public');
+                File::put(public_path($path . $name), $fileContent);
                 $product->update(['image' => $path . $name]);
             }
             DB::commit();
@@ -65,14 +69,18 @@ class ProductController extends Controller
         try {
             $product = Product::findOrFail($id);
             $data = $request->all();
-            if ($request->hasFile('image')) {
+            if ($request->has('file_content')) {
+                $extension = explode('/', mime_content_type($request->file_content))[1];
+                $fileContent = $request->file_content;
+                list($baseType, $fileContent) = explode(';', $fileContent);
+                list(, $fileContent) = explode(',', $fileContent);
+                $fileContent = base64_decode($fileContent);
+                $name = 'product_' . $product->id . '_' . Carbon::now()->format('Y_m_d_his') . '.' . $extension;
+                $path = config('filesystems.file_upload_path.product_path');
+                File::put(public_path($path . $name), $fileContent);
                 if (File::exists($product->image)) {
                     File::delete($product->image);
                 }
-                $image = $request->file('image');
-                $name = 'product_' . $product->id . '_' . Carbon::now()->format('Y_m_d_his') . '.' . $image->getClientOriginalExtension();
-                $path = config('filesystems.file_upload_path.user_path');
-                $image->move($path, $name, 'public');
                 $data['image'] = $path . $name;
             }
             $product->update($data);

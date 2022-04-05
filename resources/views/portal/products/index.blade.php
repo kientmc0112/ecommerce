@@ -36,7 +36,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                      <img width="300px" height="200px" style="object-fit: cover" src="{{ asset($product->image) }}" />
+                                      <img width="250px" src="{{ asset($product->image) }}" />
                                     </td>
                                     <td>{{ number_format($product->price, 0, ',', '.') }}</td>
                                     <td>{{ number_format($product->sale_price, 0, ',', '.') }}</td>

@@ -171,7 +171,7 @@
                                     @endif
                                 </a>
                                 @if (count($categoryHeader->childs) > 0)
-                                    <div class="category-menu-dropdown" style="width: 200px; padding: 20px">
+                                    <div class="category-menu-dropdown" style="width: 200px; padding: 15px">
                                         <div class="category-dropdown-style category-common4 w-100 p-0">
                                             <ul>
                                                 @foreach ($categoryHeader->childs as $childCategoryHeader)

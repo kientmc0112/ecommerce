@@ -26,7 +26,7 @@ class UpdateRequest extends FormRequest
         return [
             'name' => 'required',
             'category_id' => 'required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg',
+            // 'image' => 'nullable|image|mimes:jpeg,png,jpg',
             'quantity' => 'nullable|numeric',
             'price' => 'required|numeric',
             'sale_price' => 'nullable|numeric'

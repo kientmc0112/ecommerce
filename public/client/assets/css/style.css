@@ -3524,7 +3524,7 @@ a.banner-book-style-btn:hover {
   background-color: #fff;
   border-radius: 10px;
   left: 0;
-  padding: 40px 0;
+  padding: 20px 0;
   position: absolute;
   top: 100%;
   width: 300px;
@@ -3539,10 +3539,10 @@ a.banner-book-style-btn:hover {
   display: block;
   font-size: 14px;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   margin-left: 30px;
   margin-right: 20px;
-  padding-bottom: 20px;
+  padding-bottom: 15px;
 }
 .category-menu-list > ul > li:last-child > a {
   border-bottom: none;

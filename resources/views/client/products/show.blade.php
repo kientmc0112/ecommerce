@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-12 col-lg-7 col-12">
                 <div class="product-details-5 pr-70">
-                    <img src="{{ asset($product->image) }}" alt="" style="max-height: 600px; width: 100%; object-fit: cover">
+                    <img src="{{ asset($product->image) }}" alt="" style="width: 100%">
                 </div>
             </div>
             <div class="col-md-12 col-lg-5 col-12">
@@ -137,7 +137,7 @@
                     <div class="product-wrapper">
                         <div class="product-img">
                             <a href="{{ route('products.show', $relatedProduct->slug) }}">
-                                <img src="{{ asset($relatedProduct->image) }}" alt="" style="height: 450px; width: 100%; object-fit: cover">
+                                <img src="{{ asset($relatedProduct->image) }}" alt="" style="width: 100%">
                             </a>
                             @if (isset($relatedProduct->discount) && $relatedProduct->discount > 0)
                                 <span class="bg-danger">sell</span>
