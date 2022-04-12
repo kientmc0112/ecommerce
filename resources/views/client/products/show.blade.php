@@ -155,7 +155,7 @@
                             </div> --}}
                         </div>
                         <div class="product-content">
-                            <h4><a href="{{ route('products.show', $relatedProduct->slug) }}">{{ $relatedProduct->name }}</a></h4>
+                            <h4 style="height: 50px; overflow: hidden; font-size: 19px"><a href="{{ route('products.show', $relatedProduct->slug) }}">{{ $relatedProduct->name }}</a></h4>
                             <span class="mr-2">{{ number_format($relatedProduct->sale_price, 0, ',', '.') ?? number_format($relatedProduct->price, 0, ',', '.') }}đ</span>
                             @if (isset($relatedProduct->discount) && $relatedProduct->discount > 0)
                                 <label style="text-decoration: line-through">{{ number_format($relatedProduct->price, 0, ',', '.') }}đ</label>

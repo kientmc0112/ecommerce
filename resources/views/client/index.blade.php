@@ -33,7 +33,7 @@
                                 </div> --}}
                             </div>
                             <div class="product-content-4 text-center">
-                                <h4 style="height: 50px"><a href="{{ route('products.show', $newProduct->slug) }}">{{ $newProduct->name }}</a></h4>
+                                <h4 style="height: 50px; overflow: hidden; font-size: 19px"><a href="{{ route('products.show', $newProduct->slug) }}">{{ $newProduct->name }}</a></h4>
                                 {{-- <span style="height: 20px; overflow: hidden">{{ $newProduct->category->name }}</span> --}}
                                 <div class="d-flex justify-content-center align-items-center">
                                     <h5 class="mr-2">{{ number_format($newProduct->sale_price, 0, ',', '.') ?? number_format($newProduct->price, 0, ',', '.') }}đ</h5>
@@ -68,7 +68,7 @@
                                         </a>
                                     </div>
                                     <div class="product-content-7 d-flex flex-column justify-content-center">
-                                        <h4 style="height: 50px"><a href="{{ route('products.show', $saleProduct->slug) }}">{{ $saleProduct->name }}</a></h4>
+                                        <h4 style="height: 50px; overflow: hidden"><a href="{{ route('products.show', $saleProduct->slug) }}">{{ $saleProduct->name }}</a></h4>
                                         <span style="text-decoration: line-through">{{ number_format($newProduct->price, 0, ',', '.') }}đ</span>
                                         <h5>{{ number_format($newProduct->sale_price, 0, ',', '.') }}đ</h5>
                                         {{-- <div class="product-action-electro">

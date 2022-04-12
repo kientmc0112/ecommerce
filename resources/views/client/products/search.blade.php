@@ -188,7 +188,7 @@
                                         <div class="col-lg-3 col-md-4">
                                             <div class="product-wrapper product-box-style mb-30">
                                                 <div class="product-img">
-                                                    <a href="{{ route('products.show', $product->id) }}">
+                                                    <a href="{{ route('products.show', $product->slug) }}">
                                                         <img src="{{ asset($product->image) }}" alt="" style="width: 100%">
                                                     </a>
                                                     @if (isset($product->discount) && $product->discount > 0)
@@ -208,7 +208,7 @@
                                                     </div> --}}
                                                 </div>
                                                 <div class="product-content">
-                                                    <h4 style="height: 50px"><a href="{{ route('products.show', $product->id) }}">{{ $product->name }}</a></h4>
+                                                    <h4 style="height: 50px; overflow: hidden; font-size: 19px"><a href="{{ route('products.show', $product->slug) }}">{{ $product->name }}</a></h4>
                                                     {{-- <span>$115.00</span> --}}
                                                     <span class="mr-2">{{ number_format($product->sale_price, 0, ',', '.') ?? number_format($product->price, 0, ',', '.') }}đ</span>
                                                     @if (isset($product->discount) && $product->discount > 0)
@@ -227,7 +227,7 @@
                                             <div
                                                 class="product-wrapper mb-30 single-product-list product-list-right-pr mb-60">
                                                 <div class="product-img list-img-width">
-                                                    <a href="{{ route('products.show', $product->id) }}">
+                                                    <a href="{{ route('products.show', $product->slug) }}">
                                                         <img src="{{ asset($product->image) }}" alt="" style="width: 100%">
                                                     </a>
                                                     @if (isset($product->discount) && $product->discount > 0)
@@ -242,7 +242,7 @@
                                                 </div>
                                                 <div class="product-content-list">
                                                     <div class="product-list-info">
-                                                        <h4><a href="{{ route('products.show', $product->id) }}">{{ $product->name }}</a></h4>
+                                                        <h4><a href="{{ route('products.show', $product->slug) }}">{{ $product->name }}</a></h4>
                                                         <span>{{ number_format($product->sale_price, 0, ',', '.') ?? number_format($product->price, 0, ',', '.') }}đ
                                                         @if (isset($product->discount) && $product->discount > 0)
                                                             <label class="ml-2" style="text-decoration: line-through">{{ number_format($product->price, 0, ',', '.') }}đ</label>
