@@ -10,18 +10,20 @@ use DB;
 use Illuminate\Support\Facades\Route;
 use App\Models\Image;
 use App\Enums\DBConstant;
+use App\Models\System;
 
 class HomeController extends Controller
 {
     public function index(Request $request)
     {
+        $system = System::first();
         $categoryHeaders = Category::with('childs')->whereNull('parent_id')->get();
         if ($request->has('keyword') && $request->keyword) {
             $keyword = $request->keyword;
             $products = Product::where('name', 'LIKE', "%$keyword%")->orderBy('created_at', 'desc')->paginate(12);
             $countProduct = Product::where('name', 'LIKE', "%$keyword%")->count();
 
-            return view('client.products.search', compact('products', 'categoryHeaders', 'countProduct'))->with('keyword', $keyword);
+            return view('client.products.search', compact('products', 'categoryHeaders', 'countProduct', 'system'))->with('keyword', $keyword);
         }
 
         $sliders = Image::where('type', DBConstant::SLIDER_TYPE)
@@ -66,6 +68,6 @@ class HomeController extends Controller
         ->orderBy('discount', 'DESC')
         ->get();
 
-        return view('client.index', compact('categoryHeaders', 'newProducts', 'saleProducts', 'sliders', 'topBanners', 'botBanners'));
+        return view('client.index', compact('categoryHeaders', 'newProducts', 'saleProducts', 'sliders', 'topBanners', 'botBanners', 'system'));
     }
 }

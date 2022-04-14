@@ -21,6 +21,8 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::middleware(['auth'])->group(function() {
             Route::get('/', 'HomeController@index')->name('dashboard');
+            Route::get('/system', 'HomeController@showSystem')->name('system.show');
+            Route::post('/system', 'HomeController@saveSystem')->name('system.save');
             Route::get('/images/list', 'ImageController@list')->name('images.list');
             Route::post('/images/upload', 'ImageController@upload')->name('images.upload');
             Route::delete('/images/remove', 'ImageController@remove')->name('images.remove');

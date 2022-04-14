@@ -19,8 +19,8 @@
             <ul class="dropdown-menu dropdown-user">
                 <li><a href="{{ route('users.edit', auth()->id()) }}"><i class="fa fa-user fa-fw"></i> Hồ sơ cá nhân</a>
                 </li>
-                {{-- <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                </li> --}}
+                <li><a href="{{ route('system.show') }}"><i class="fa fa-gear fa-fw"></i> Thông tin hệ thống</a>
+                </li>
                 <li class="divider"></li>
                 <li id="logout">
                     <a><i class="fa fa-sign-out fa-fw"></i> Đăng xuất</a>

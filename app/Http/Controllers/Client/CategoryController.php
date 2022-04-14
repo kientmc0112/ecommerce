@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\System;
 use DB;
 use Exception;
 
@@ -14,6 +15,7 @@ class CategoryController extends Controller
     public function show($id)
     {
         try {
+            $system = System::first();
             $categoryHeaders = Category::with('childs')->whereNull('parent_id')->get();
             $category = Category::findOrFail($id);
             $products = Product::select(
@@ -24,7 +26,7 @@ class CategoryController extends Controller
             ->paginate(12);
             $countProduct = Product::where('category_id', $id)->count();
 
-            return view('client.categories.show', compact('category', 'products', 'categoryHeaders', 'countProduct'));
+            return view('client.categories.show', compact('category', 'products', 'categoryHeaders', 'countProduct', 'system'));
         } catch (Exception $e) {
             return redirect()->route('home');
         }

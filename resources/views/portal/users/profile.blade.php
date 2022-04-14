@@ -66,11 +66,8 @@
                                     </div>
                                 </div>
                                 <div style="text-align: right">
-                                    <button type="submit" class="btn btn-default">{{
-                                        trans('messages.user.button.submit')
-                                        }}</button>
-                                    <button type="reset" class="btn btn-default">{{ trans('messages.user.button.reset')
-                                        }}</button>
+                                    <button type="submit" class="btn btn-default">Submit</button>
+                                    <button type="reset" class="btn btn-default">Reset</button>
                                 </div>
                             </form>
                         </div>

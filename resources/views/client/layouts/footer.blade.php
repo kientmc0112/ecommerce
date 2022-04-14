@@ -11,8 +11,7 @@
                                     <span>Address:</span>
                                 </div>
                                 <div class="footer-info-content2">
-                                    <p>77 Seventh Streeth Banasree
-                                        <br>Road Rampura -2100 Dhaka</p>
+                                    <p>{{ $system ? $system->address : '' }}</p>
                                 </div>
                             </div>
                             <div class="footer-address-electro">
@@ -20,8 +19,7 @@
                                     <span>Phone:</span>
                                 </div>
                                 <div class="footer-info-content2">
-                                    <p>+11 (019) 2518 4203
-                                        <br>+11 (251) 2223 3353</p>
+                                    <p>{{ $system ? $system->phone : '' }}</p>
                                 </div>
                             </div>
                             <div class="footer-address-electro">
@@ -29,8 +27,7 @@
                                     <span>Email:</span>
                                 </div>
                                 <div class="footer-info-content2">
-                                    <p><a href="#">domain@mail.com</a>
-                                        <br><a href="#">company@domain.info</a></p>
+                                    <p>{{ $system ? $system->email : '' }}</a></p>
                                 </div>
                             </div>
                         </div>
@@ -120,7 +117,7 @@
             </div>
         </div>
     </div>
-    <div class="footer-bottom  black-bg pt-25 pb-30">
+    {{-- <div class="footer-bottom  black-bg pt-25 pb-30">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-5">
@@ -144,5 +141,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 </footer>
