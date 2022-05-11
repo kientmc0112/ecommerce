@@ -32,6 +32,8 @@
 
     @include('client.layouts.footer')
 
+    @include('client.layouts.call')
+
     <script src="{{ asset('client/assets/js/vendor/jquery-1.12.0.min.js') }}"></script>
     <script src="{{ asset('client/assets/js/popper.js') }}"></script>
     <script src="{{ asset('client/assets/js/bootstrap.min.js') }}"></script>

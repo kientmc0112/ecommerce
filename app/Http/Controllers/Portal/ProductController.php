@@ -34,7 +34,7 @@ class ProductController extends Controller
         try {
             $data = $request->all();
             $product = Product::create($data);
-            if ($request->has('file_content')) {
+            if ($request->has('file_content') && $request->file_content) {
                 $extension = explode('/', mime_content_type($request->file_content))[1];
                 $fileContent = $request->file_content;
                 list($baseType, $fileContent) = explode(';', $fileContent);
@@ -69,7 +69,7 @@ class ProductController extends Controller
         try {
             $product = Product::findOrFail($id);
             $data = $request->all();
-            if ($request->has('file_content')) {
+            if ($request->has('file_content') && $request->file_content) {
                 $extension = explode('/', mime_content_type($request->file_content))[1];
                 $fileContent = $request->file_content;
                 list($baseType, $fileContent) = explode(';', $fileContent);
